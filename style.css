@@ -1,0 +1,161 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* this allows to transition from one color to other  */
+  background-image: linear-gradient(120deg, #50adeb, #f18a6e);
+  color: white;
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+}
+
+header {
+  font-size: 1.5rem;
+}
+
+header,
+form {
+  min-height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* background: lightblue;
+  border: black solid 1px; */
+}
+/* for the input rectangle */
+form input,
+form button {
+  padding: 0.5rem;
+  font-size: 2rem;
+  border: none;
+  background: white;
+}
+
+.todo-input {
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+.todo-input:hover {
+  opacity: 1;
+}
+
+form button {
+  color: #ec967e;
+  background: white;
+  cursor: pointer;
+  /* some sort of animation */
+  transition: all 0.5s ease;
+}
+form button:hover {
+  background: #ec967e;
+  color: white;
+}
+
+/* 
+
+style for the added list elements */
+.todo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: black solid 1px; */
+}
+.todo-list {
+  min-width: 30%;
+  list-style: none;
+  /* border: black solid 1px; */
+}
+/* below are JS created elements*/
+.todo {
+  margin: 0.5rem;
+  background: none;
+  font-size: 1.5rem;
+  /* border: black solid 1px; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 1s ease;
+}
+
+/* I tried using class selector .todo-item and it also worked, did not see any difference */
+.todo li {
+  /* flex: 1; is short hand dor flex-grow, the object expanded to occupy free space, 
+  so the icons were pushed together  */
+  flex: 1;
+  padding-right: 0.3rem;
+}
+.trash-btn,
+.complete-btn {
+  background: #4acf3e49;
+  /* background: none; */
+  color: white;
+  border: none;
+  padding: 1rem;
+  margin: 0.2rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.trash-btn {
+  margin-right: 0;
+  background: #cf3e3e49;
+}
+
+.fa-trash,
+.fa-check {
+  /* makes item (in this case icons of trash and check) non-clickable */
+  pointer-events: none;
+}
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.4;
+}
+
+.fall {
+  transform: translateY(8rem) rotateZ(20deg);
+  opacity: 0;
+}
+
+/* the filter styling */
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+/* the div around select tag */
+.select {
+  margin: 1rem;
+  position: relative;
+  overflow: hidden; /* stops items from going over the border ie text or picture  */
+}
+
+select {
+  color: #ec967e;
+  width: 10rem;
+  cursor: pointer;
+  padding: 1rem;
+  font-size: 1rem;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+.select::after {
+  content: "\25bc";
+  color: #ec967e;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.8rem 0.6rem 1rem 1rem;
+
+  pointer-events: none;
+}
+select:hover {
+  opacity: 1;
+}
