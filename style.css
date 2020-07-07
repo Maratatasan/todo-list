@@ -179,6 +179,7 @@ select:hover {
 }
 
 @media (max-width: 490px) {
+  
   header{
     font-size: 0.7rem;
     min-height: 10vh;
@@ -187,18 +188,21 @@ select:hover {
   form{
   min-height: 10vh
   }
+
   form input, form button {
     padding: 0.5rem;
     font-size: 1rem;
   }
+
   select {
     padding: 0.5rem;
     font-size: 0.7rem;
   }
-  .select::after {
 
+  .select::after {
   padding: 0.2rem 0.6rem 1rem 1rem;
   }
+
  .trash-btn,
   .complete-btn {
   
@@ -211,5 +215,5 @@ select:hover {
     flex: 1;
     padding-right: 0.3rem;
     font-size: 1.5rem;
-}
+  }
 }

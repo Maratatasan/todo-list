@@ -150,7 +150,6 @@ function getTodos() {
     todoDiv.classList.add("todo");
     if (todo[1] > 0) {
       todoDiv.classList.add("completed");
-      console.log("1");
     }
 
     //create li
@@ -192,7 +191,6 @@ function removeLocelTodos(todo) {
 
   todos.forEach((item) => {
     if (item.includes(todoIndex)) {
-      console.log(todoIndex);
       todos.splice(todos.indexOf(item), 1);
     }
   });
