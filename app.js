@@ -64,9 +64,9 @@ function deleteCheck(event) {
     const todo = item.parentElement;
     //add animation class
     todo.classList.add("fall");
-    //CALL FUNCTION TO DELETE FROM LOCAL STORAGE
+    // //CALL FUNCTION TO DELETE FROM LOCAL STORAGE
     removeLocelTodos(todo);
-    //special event listener that waits for the animation to finish
+    // //special event listener that waits for the animation to finish
     todo.addEventListener("transitionend", function () {
       todo.remove();
     });
@@ -78,6 +78,13 @@ function deleteCheck(event) {
     //the class .completed is created in styles.css
     //the line below will add and remove class completed to todo when clicked
     todo.classList.toggle("completed");
+
+    //remembers and alters the check marks
+    const target = todo.innerText;
+
+    let todos = JSON.parse(localStorage.getItem("todos"));
+    findTarget(todos, target);
+    localStorage.setItem("todos", JSON.stringify(todos));
   }
 }
 
@@ -119,7 +126,7 @@ function saveLocalTodos(todo) {
     todos = JSON.parse(localStorage.getItem("todos"));
   }
   //local storage can hold arrays
-  todos.push(todo);
+  todos.push([todo, 0]);
   // the line below is how you save it to local storage - has to be string
   localStorage.setItem("todos", JSON.stringify(todos));
 }
@@ -141,11 +148,15 @@ function getTodos() {
     const todoDiv = document.createElement("div");
     // add class to the div
     todoDiv.classList.add("todo");
+    if (todo[1] > 0) {
+      todoDiv.classList.add("completed");
+      console.log("1");
+    }
 
     //create li
     const newTodo = document.createElement("li");
     //   get value from input
-    newTodo.innerText = todo;
+    newTodo.innerText = todo[0];
     newTodo.classList.add("todo-item");
     //   put the li in the div
     todoDiv.appendChild(newTodo);
@@ -178,7 +189,36 @@ function removeLocelTodos(todo) {
     todos = JSON.parse(localStorage.getItem("todos"));
   }
   const todoIndex = todo.children[0].innerText;
-  todos.splice(todos.indexOf(todoIndex), 1);
-  // save the amended list to local storage
+
+  todos.forEach((item) => {
+    if (item.includes(todoIndex)) {
+      console.log(todoIndex);
+      todos.splice(todos.indexOf(item), 1);
+    }
+  });
+
+  // // save the amended list to local storage
   localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+// change numbers from 1 to 0 or 0 to 1 in item array
+function changeNumber(item) {
+  switch (item[1]) {
+    case 0:
+      item[1] = 1;
+
+      break;
+    case 1:
+      item[1] = 0;
+      break;
+  }
+}
+
+//will make changes in todos
+function findTarget(array, target) {
+  array.forEach((item) => {
+    if (item.includes(target)) {
+      changeNumber(item);
+    }
+  });
 }
